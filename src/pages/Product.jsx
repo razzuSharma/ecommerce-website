@@ -7,35 +7,18 @@ function Product() {
   function getDataProducts() {
     axios.get(productApi).then((res) => setProductData(res.data));
   }
-
   useEffect(() => {
     getDataProducts();
   }, [productApi]);
-
-
-
-  // <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-  //     {products.map(product => (
-  //       <div key={product.id} className="bg-white p-6 shadow-lg rounded-lg">
-  //         <img src={product.imageUrl} alt={product.name} className="w-full h-64 object-cover" />
-  //         <h2 className="text-lg font-medium mt-4">{product.name}</h2>
-  //         <p className="text-gray-600 mt-2">{product.description}</p>
-  //         <p className="text-red-600 font-medium mt-4">${product.price}</p>
-  //       </div>
-
   return (
-    <div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 h-fit">
       {productData.map((value) => {
         const { id, title, price, description, category, image } = value;
         return (
-          <div key={id} className="grid grid-cols-4 gap-4">
+          <div key={id}>
             <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
               <a href="#">
-                <img
-                  class="p-8 rounded-t-lg"
-                  src={image}
-                  alt="product image"
-                />
+                <img class="p-8 rounded-t-lg" src={image} alt="product image" />
               </a>
               <div class="px-5 pb-5">
                 <a href="#">
@@ -56,8 +39,7 @@ function Product() {
                 </div>
               </div>
             </div>
-            </div>
-
+          </div>
         );
       })}
       1
