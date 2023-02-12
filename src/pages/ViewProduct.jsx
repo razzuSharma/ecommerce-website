@@ -1,24 +1,28 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import Navbars from "./Navbars";
 
 export default function ViewProduct() {
-  // //   const { id } = useParams();
-  // //   console.log(id)
   const value = useLocation();
   const dataVal = value.state
 
   return (
+    <div>
+      <Navbars/>
     <div className="container px-5 py-24 mx-auto">
       <div className="lg:w-4/5 mx-auto flex flex-wrap">
         <img
           alt="ecommerce"
-          className="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200"
+          className="h-40 w-40 rounded border border-gray-200"
           src={dataVal.image}
         />
         <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
           <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
             {dataVal.title}
           </h1>
+          <h2 className="text-gray-900 text-2xl title-font font-medium mb-1">
+            {dataVal.category}
+          </h2>
           <p className="leading-relaxed">
             {dataVal.description}
           </p>
@@ -28,11 +32,12 @@ export default function ViewProduct() {
               ${dataVal.price}
             </span>
             <button className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">
-              Button
+              Buy
             </button>
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }
