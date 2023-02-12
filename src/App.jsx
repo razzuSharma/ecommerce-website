@@ -6,6 +6,7 @@ import Product from "./pages/Product";
 import Navbar from "./pages/Navbars";
 import { Route, Routes } from "react-router-dom";
 import ViewProduct from "./pages/ViewProduct";
+import BuyingProduct from "./pages/BuyingProduct";
 function App() {
   return (
     <Routes>
@@ -14,6 +15,7 @@ function App() {
       <Route path="/product" element={<Product />} />
       <Route path="/viewProduct/:id" element={<ViewProduct />} />
       <Route path="/navbar" element={<Navbar />} />
+      <Route path="/buyingProduct/:id" element={<BuyingProduct/>} />
     </Routes>
   );
 }
