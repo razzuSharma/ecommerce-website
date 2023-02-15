@@ -7,7 +7,7 @@ function Product() {
   const { productData,isLoading,error } = useApi("http://localhost:3000/posts");
   const [searchTerm, setSearchTerm] = useState("");
   const [priceRange, setPriceRange] = useState([0, 900]);
-  console.log(productData);
+  // console.log(productData);
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -16,6 +16,8 @@ function Product() {
   const handlePriceRangeChange = (event) => {
     setPriceRange(event.target.value);
   };
+
+  localStorage.setItem('product_data', productData)
 
   const filteredProducts = productData.filter((product) => {
     const matchesSearchTerm = product.title
@@ -29,6 +31,7 @@ function Product() {
     <div className="bg-white">
       <Navbars />
       <h1 className="text-center text-2xl">These are some products</h1>
+      {error}
       <div>
         <form>
           <label
