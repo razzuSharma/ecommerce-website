@@ -1,14 +1,13 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbars from "./Navbars";
+import useApi from "./useApi";
 
 function Product() {
-  const productApi = "http://localhost:3000/posts ";
-  const [productData, setProductData] = useState([]);
+  const { productData,isLoading,error } = useApi("http://localhost:3000/posts");
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [priceRange, setPriceRange] = useState([0, 1000]);
+  const [priceRange, setPriceRange] = useState([0, 900]);
+  console.log(productData);
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -22,24 +21,14 @@ function Product() {
     const matchesSearchTerm = product.title
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
-    const matchesCategory =
-      selectedCategory === "" || product.category === selectedCategory;
     const matchesPriceRange =
       product.price >= priceRange[0] && product.price <= priceRange[1];
-    return matchesSearchTerm && matchesCategory && matchesPriceRange;
+    return matchesSearchTerm && matchesPriceRange;
   });
-
-  function getDataProducts() {
-    axios.get(productApi).then((res) => setProductData(res.data));
-  }
-  useEffect(() => {
-    getDataProducts();
-  }, [productApi]);
   return (
     <div className="bg-white">
       <Navbars />
       <h1 className="text-center text-2xl">These are some products</h1>
-
       <div>
         <form>
           <label
@@ -57,10 +46,10 @@ function Product() {
                 stroke="currentColor"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
-              >``
+              >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   strokeWidth="2"
                   d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                 ></path>
@@ -85,10 +74,10 @@ function Product() {
         </form>
         Price range:
         <input
-          className="m-1"
           type="range"
           min={0}
-          max={900}
+          max={100}
+          step={1}
           value={priceRange}
           onChange={handlePriceRangeChange}
         />
@@ -99,7 +88,7 @@ function Product() {
           {filteredProducts.map((value) => {
             const { id, title, price, image } = value;
             return (
-              <div>
+              <div key={id}>
                 <Link to={`/viewProduct/${id}`} className="group" state={value}>
                   <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
                     <img
