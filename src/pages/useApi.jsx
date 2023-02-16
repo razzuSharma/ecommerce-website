@@ -20,7 +20,7 @@ export default function useApi(apiEndpoint) {
     fetchData();
   }, [apiEndpoint]);
 
-  return { productData, isLoading, error };
+  return { productData, setProductData, isLoading, error };
 }
 //   useEffect(() => {
 //     try

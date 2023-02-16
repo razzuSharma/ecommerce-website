@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { Navigate } from "react-router";
 import HomePage from "./Admin/HomePage";
-// import HomePage from "./Admin/HomePage";
 import Home from "./Home";
 
 function Login() {

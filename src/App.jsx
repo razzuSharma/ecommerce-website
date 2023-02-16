@@ -8,7 +8,7 @@ import { Route, Routes } from "react-router-dom";
 import ViewProduct from "./pages/ViewProduct";
 import BuyingProduct from "./pages/BuyingProduct";
 import HomePage from "./pages/Admin/HomePage";
-import ViewProductAdmin from "./pages/Admin/ViewProductAdmin";
+import UpdateData from "./pages/Admin/UpdateData";
 function App() {
   return (
     <Routes>
@@ -19,7 +19,8 @@ function App() {
       <Route path="/navbar" element={<Navbar />} />
       <Route path="/buyingProduct/:id" element={<BuyingProduct/>} />
       <Route path="/admin/" element={<HomePage/>} />
-      <Route path="/admin/viewProduct" element={<ViewProductAdmin/>}/>
+      <Route path="/admin/update/:id" element={<UpdateData/>}/>
+
     </Routes>
   );
 }
