@@ -9,17 +9,18 @@ import ViewProduct from "./pages/ViewProduct";
 import BuyingProduct from "./pages/BuyingProduct";
 import HomePage from "./pages/Admin/HomePage";
 import UpdateData from "./pages/Admin/UpdateData";
+import Auth from "./pages/Auth";
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/product" element={<Product />} />
+      <Route path="/product" element={<Auth><Product /></Auth>} />
       <Route path="/viewProduct/:id" element={<ViewProduct />} />
       <Route path="/navbar" element={<Navbar />} />
       <Route path="/buyingProduct/:id" element={<BuyingProduct/>} />
-      <Route path="/admin/" element={<HomePage/>} />
-      <Route path="/admin/update/:id" element={<UpdateData/>}/>
+      <Route path="/admin/" element={<Auth><HomePage/></Auth>} />
+      <Route path="/admin/update/:id" element={<Auth><UpdateData/></Auth>}/>
 
     </Routes>
   );

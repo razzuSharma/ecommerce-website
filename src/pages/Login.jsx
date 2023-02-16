@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef,useEffect } from "react";
 import { Navigate } from "react-router";
 import HomePage from "./Admin/HomePage";
 import Home from "./Home";
@@ -28,6 +28,10 @@ function Login() {
       localStorage.setItem("passwordDataAdmin", "admin_password");
     }
   };
+
+  useEffect(()=>{
+    localStorage.setItem("key", "isLoggedIn")
+  })
 
   return (
     <div>
